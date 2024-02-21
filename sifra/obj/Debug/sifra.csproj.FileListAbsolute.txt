@@ -9,3 +9,14 @@ C:\Users\rohacekd\source\repos\sifra\sifra\obj\Debug\sifra.csproj.GenerateResour
 C:\Users\rohacekd\source\repos\sifra\sifra\obj\Debug\sifra.csproj.CoreCompileInputs.cache
 C:\Users\rohacekd\source\repos\sifra\sifra\obj\Debug\sifra.exe
 C:\Users\rohacekd\source\repos\sifra\sifra\obj\Debug\sifra.pdb
+C:\Users\rohacekd\Desktop\sifra\sifra\bin\Debug\sifra.exe.config
+C:\Users\rohacekd\Desktop\sifra\sifra\bin\Debug\sifra.exe
+C:\Users\rohacekd\Desktop\sifra\sifra\bin\Debug\sifra.pdb
+C:\Users\rohacekd\Desktop\sifra\sifra\obj\Debug\sifra.csproj.AssemblyReference.cache
+C:\Users\rohacekd\Desktop\sifra\sifra\obj\Debug\sifra.csproj.SuggestedBindingRedirects.cache
+C:\Users\rohacekd\Desktop\sifra\sifra\obj\Debug\sifra.Form1.resources
+C:\Users\rohacekd\Desktop\sifra\sifra\obj\Debug\sifra.Properties.Resources.resources
+C:\Users\rohacekd\Desktop\sifra\sifra\obj\Debug\sifra.csproj.GenerateResource.cache
+C:\Users\rohacekd\Desktop\sifra\sifra\obj\Debug\sifra.csproj.CoreCompileInputs.cache
+C:\Users\rohacekd\Desktop\sifra\sifra\obj\Debug\sifra.exe
+C:\Users\rohacekd\Desktop\sifra\sifra\obj\Debug\sifra.pdb
