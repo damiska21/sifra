@@ -45,7 +45,7 @@
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(222, 186);
             this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "text na zašifrování";
+            this.richTextBox1.Text = "text na zasifrovani";
             // 
             // richTextBox2
             // 
@@ -53,7 +53,7 @@
             this.richTextBox2.Name = "richTextBox2";
             this.richTextBox2.Size = new System.Drawing.Size(222, 186);
             this.richTextBox2.TabIndex = 1;
-            this.richTextBox2.Text = "text na dešifrování";
+            this.richTextBox2.Text = "text na desifrovani";
             // 
             // label1
             // 
@@ -79,7 +79,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(222, 20);
             this.textBox1.TabIndex = 4;
-            this.textBox1.Text = "klíč na zašifrování";
+            this.textBox1.Text = "klic";
             // 
             // textBox2
             // 
@@ -87,7 +87,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(222, 20);
             this.textBox2.TabIndex = 5;
-            this.textBox2.Text = "klíč na dešifrování";
+            this.textBox2.Text = "klic";
             // 
             // button1
             // 

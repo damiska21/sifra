@@ -1,26 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace MorseCodeConverter
+namespace sifra
 {
     // <summary>
-    // A utility class that provides methods to convert text to Morse code.
+    // Represents a Morse Code encoder and decoder.
+    // The class provides methods to encode text into Morse Code and decode Morse Code back into text.
     // </summary>
     public class MorseCodeConverter
     {
+        private Dictionary<char, string> morseCodeDictionary;
+
         // <summary>
-        // Converts the given text to Morse code.
-        //
-        // Parameters:
-        // - text: The text to be converted to Morse code.
-        //
-        // Returns:
-        // - A string representing the Morse code equivalent of the input text.
+        // Constructs a new instance of the MorseCodeConverter class.
+        // Initializes the Morse Code dictionary with the standard Morse Code mappings.
         // </summary>
-        public static string ConvertToMorseCode(string text)
+        public MorseCodeConverter()
         {
-            // Define the Morse code mappings.
-            Dictionary<char, string> morseCodeMappings = new Dictionary<char, string>()
+            morseCodeDictionary = new Dictionary<char, string>()
             {
                 {'A', ".-"},
                 {'B', "-..."},
@@ -58,26 +55,73 @@ namespace MorseCodeConverter
                 {'7', "--..."},
                 {'8', "---.."},
                 {'9', "----."},
-                {' ', " "}
+                {' ', "/"}
             };
+        }
 
-            // Convert the text to uppercase for consistency.
+        // <summary>
+        // Encodes the given text into Morse Code.
+        //
+        // Parameters:
+        // - text: The text to be encoded.
+        //
+        // Returns:
+        // - A string representing the encoded Morse Code.
+        // </summary>
+        public string EncodeToMorseCode(string text)
+        {
             text = text.ToUpper();
+            string encodedText = "";
 
-            // Convert each character to its Morse code equivalent.
-            List<string> morseCodeList = new List<string>();
             foreach (char c in text)
             {
-                if (morseCodeMappings.ContainsKey(c))
+                if (morseCodeDictionary.ContainsKey(c))
                 {
-                    morseCodeList.Add(morseCodeMappings[c]);
+                    encodedText += morseCodeDictionary[c] + " ";
+                }
+                else
+                {
+                    encodedText += c;
                 }
             }
 
-            // Join the Morse code representations of each character with a space.
-            string morseCode = string.Join(" ", morseCodeList);
+            return (encodedText.Trim());
+        }
 
-            return morseCode;
+        // <summary>
+        // Decodes the given Morse Code into text.
+        //
+        // Parameters:
+        // - morseCode: The Morse Code to be decoded.
+        //
+        // Returns:
+        // - A string representing the decoded text.
+        // </summary>
+        public string DecodeFromMorseCode(string morseCode)
+        {
+            string[] morseCodeWords = morseCode.Split(new[] { " / " }, StringSplitOptions.None);
+            string decodedText = "";
+
+            foreach (string word in morseCodeWords)
+            {
+                string[] morseCodeLetters = word.Split(' ');
+
+                foreach (string letter in morseCodeLetters)
+                {
+                    foreach (KeyValuePair<char, string> pair in morseCodeDictionary)
+                    {
+                        if (pair.Value == letter)
+                        {
+                            decodedText += pair.Key;
+                            break;
+                        }
+                    }
+                }
+
+                decodedText += " ";
+            }
+
+            return decodedText.Trim().ToLower();
         }
     }
 }

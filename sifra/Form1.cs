@@ -19,14 +19,23 @@ namespace sifra
         //zašifrovat
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(alphabetGen(textBox1.Text));
+            // MessageBox.Show(alphabetGen(textBox1.Text));
             //richTextBox1.Text = alphabetGen(textBox1.Text);
-            richTextBox1.Text = switchString(alphabetGen(textBox1.Text), richTextBox1.Text);
+
+            //richTextBox1.Text = morse.EncodeToMorseCode(switchString(alphabetGen(textBox1.Text), richTextBox1.Text));
+
+            //richTextBox1.Text = morseCharsToText(morse.EncodeToMorseCode(richTextBox1.Text), textBox1.Text);
+            richTextBox1.Text = morseCharsToText(morse.EncodeToMorseCode(richTextBox1.Text), textBox1.Text);
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            richTextBox2.Text = switchStringBack(alphabetGen(textBox2.Text), richTextBox2.Text);
+            //richTextBox2.Text = morse.DecodeFromMorseCode(richTextBox2.Text);
+            //richTextBox2.Text = switchStringBack(alphabetGen(textBox2.Text), morse.DecodeFromMorseCode(richTextBox2.Text));
+            //richTextBox2.Text = morse.DecodeFromMorseCode();
+            richTextBox2.Text = morseCharsToTextBack(richTextBox2.Text, textBox2.Text);
         }
+        public MorseCodeConverter morse = new MorseCodeConverter();
+        
         public string alphabet = "abcdefghijklmnopqrstuvwxyz1234567890";
         public string alphabetGen(string key)
         {
@@ -105,7 +114,58 @@ namespace sifra
             }
             return modifiedText;
         }
+        public string morseCharsToText(string text, string key)
+        {
+            string textOutput = "";
+            int alphabetIndex = 0;
+            for(int i = 0; i < text.Length; i++)
+            {
+                alphabetIndex++;
+                if (alphabetIndex+2 >= 36)
+                {
+                    alphabetIndex = 0;
+                }
+                switch (text[i])
+                {
+                    case ' ':
+                        textOutput += alphabet[alphabetIndex];
+                        break;
+                    case '.':
+                        textOutput+= alphabet[alphabetIndex+1];
+                        break;
+                    case '-':
+                        textOutput+= alphabet[alphabetIndex+2];
+                        break;
+                }
+            }
 
-        
+            return textOutput;
+        }
+        public string morseCharsToTextBack(string text, string key)
+        {
+            string textOutput = "";
+            int alphabetIndex = 0;
+            for (int i = 0; i < text.Length; i++)
+            {
+                alphabetIndex++;
+                if (alphabetIndex + 2 >= 36)
+                {
+                    alphabetIndex = 0;
+                }
+                if (text[i] == alphabet[alphabetIndex])
+                {
+                    textOutput += ' ';
+                }else if (text[i] == alphabet[alphabetIndex+1])
+                {
+                    textOutput += '.';
+                }
+                else if (text[i] == alphabet[alphabetIndex+2])
+                {
+                    textOutput += '-';
+                }
+            }
+
+            return textOutput;
+        }
     }
 }
