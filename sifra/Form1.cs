@@ -19,20 +19,13 @@ namespace sifra
         //zašifrovat
         private void button1_Click(object sender, EventArgs e)
         {
-            // MessageBox.Show(alphabetGen(textBox1.Text));
-            //richTextBox1.Text = alphabetGen(textBox1.Text);
-
-            //richTextBox1.Text = morse.EncodeToMorseCode(switchString(alphabetGen(textBox1.Text), richTextBox1.Text));
-
-            //richTextBox1.Text = morseCharsToText(morse.EncodeToMorseCode(richTextBox1.Text), textBox1.Text);
-            richTextBox1.Text = morseCharsToText(morse.EncodeToMorseCode(richTextBox1.Text), textBox1.Text);
+            richTextBox1.Text = switchString(morseCharsToText(morse.EncodeToMorseCode(richTextBox1.Text), textBox1.Text), alphabetGen(textBox1.Text));
+            //richTextBox1.Text = morse.EncodeToMorseCode(richTextBox1.Text);
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            //richTextBox2.Text = morse.DecodeFromMorseCode(richTextBox2.Text);
-            //richTextBox2.Text = switchStringBack(alphabetGen(textBox2.Text), morse.DecodeFromMorseCode(richTextBox2.Text));
-            //richTextBox2.Text = morse.DecodeFromMorseCode();
-            richTextBox2.Text = morseCharsToTextBack(richTextBox2.Text, textBox2.Text);
+            richTextBox2.Text = morse.DecodeFromMorseCode(morseCharsToTextBack(switchStringBack(richTextBox2.Text, alphabetGen(textBox2.Text)), textBox2.Text));
+            //richTextBox2.Text = morseCharsToTextBack(richTextBox2.Text, textBox2.Text);
         }
         public MorseCodeConverter morse = new MorseCodeConverter();
         
@@ -121,7 +114,7 @@ namespace sifra
             for(int i = 0; i < text.Length; i++)
             {
                 alphabetIndex++;
-                if (alphabetIndex+2 >= 36)
+                if (alphabetIndex+3 >= 36)
                 {
                     alphabetIndex = 0;
                 }
@@ -136,6 +129,12 @@ namespace sifra
                     case '-':
                         textOutput+= alphabet[alphabetIndex+2];
                         break;
+                    case '/':
+                        textOutput += alphabet[alphabetIndex + 3];
+                        break;
+                    default:
+                        textOutput += 'x';
+                        break;
                 }
             }
 
@@ -148,7 +147,7 @@ namespace sifra
             for (int i = 0; i < text.Length; i++)
             {
                 alphabetIndex++;
-                if (alphabetIndex + 2 >= 36)
+                if (alphabetIndex + 3 >= 36)
                 {
                     alphabetIndex = 0;
                 }
@@ -162,6 +161,10 @@ namespace sifra
                 else if (text[i] == alphabet[alphabetIndex+2])
                 {
                     textOutput += '-';
+                }
+                else if (text[i] == alphabet[alphabetIndex + 3])
+                {
+                    textOutput += '/';
                 }
             }
 
