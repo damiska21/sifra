@@ -3,18 +3,10 @@ using System.Collections.Generic;
 
 namespace sifra
 {
-    // <summary>
-    // Represents a Morse Code encoder and decoder.
-    // The class provides methods to encode text into Morse Code and decode Morse Code back into text.
-    // </summary>
     public class MorseCodeConverter
     {
         private Dictionary<char, string> morseCodeDictionary;
 
-        // <summary>
-        // Constructs a new instance of the MorseCodeConverter class.
-        // Initializes the Morse Code dictionary with the standard Morse Code mappings.
-        // </summary>
         public MorseCodeConverter()
         {
             morseCodeDictionary = new Dictionary<char, string>()
@@ -55,19 +47,15 @@ namespace sifra
                 {'7', "--..."},
                 {'8', "---.."},
                 {'9', "----."},
-                {' ', "/"}
+                {' ', "/"},
+                {'.', ".-.-.-" },
+                {',', "--..--" },
+                {':', "---..." },
+                {'-', "-....-" },
+                {'?', "..--.." },
+                {'@', ".--.-." }
             };
         }
-
-        // <summary>
-        // Encodes the given text into Morse Code.
-        //
-        // Parameters:
-        // - text: The text to be encoded.
-        //
-        // Returns:
-        // - A string representing the encoded Morse Code.
-        // </summary>
         public string EncodeToMorseCode(string text)
         {
             text = text.ToUpper();
@@ -87,16 +75,6 @@ namespace sifra
 
             return (encodedText.Trim());
         }
-
-        // <summary>
-        // Decodes the given Morse Code into text.
-        //
-        // Parameters:
-        // - morseCode: The Morse Code to be decoded.
-        //
-        // Returns:
-        // - A string representing the decoded text.
-        // </summary>
         public string DecodeFromMorseCode(string morseCode)
         {
             string[] morseCodeWords = morseCode.Split(new[] { " / " }, StringSplitOptions.None);

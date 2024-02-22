@@ -19,21 +19,21 @@ namespace sifra
         //zašifrovat
         private void button1_Click(object sender, EventArgs e)
         {
-            richTextBox1.Text = switchString(morseCharsToText(morse.EncodeToMorseCode(richTextBox1.Text), textBox1.Text), alphabetGen(textBox1.Text));
-            //richTextBox1.Text = morse.EncodeToMorseCode(richTextBox1.Text);
+            richTextBox1.Text = morse.EncodeToMorseCode(richTextBox1.Text);
+            richTextBox1.Text = morseCharsToText(richTextBox1.Text, textBox1.Text);
+            richTextBox1.Text = switchString(richTextBox1.Text, alphabetGen(textBox1.Text));
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            richTextBox2.Text = morse.DecodeFromMorseCode(morseCharsToTextBack(switchStringBack(richTextBox2.Text, alphabetGen(textBox2.Text)), textBox2.Text));
-            //richTextBox2.Text = morseCharsToTextBack(richTextBox2.Text, textBox2.Text);
+            richTextBox2.Text = switchStringBack(richTextBox2.Text, alphabetGen(textBox2.Text));
+            richTextBox2.Text = morseCharsToTextBack(richTextBox2.Text, textBox2.Text);
+            richTextBox2.Text = morse.DecodeFromMorseCode(richTextBox2.Text);
         }
         public MorseCodeConverter morse = new MorseCodeConverter();
         
-        public string alphabet = "abcdefghijklmnopqrstuvwxyz1234567890";
-        public string alphabetGen(string key)
+        public string alphabet = "abcdefghijklmnopqrstuvwxyz1234567890.,:-?@";
+        public int[] keyArr(string key)
         {
-            string retAlphabet = ""; //spřeházená abededa, která se bude vracet
-            int keyPos = 0;//pozice, odkud se bere charakter klíče
             int[] keyArray = new int[key.Length];
             //přepíše celý klíč do čísel podle umístění v alphabet
             for (int j = 0; j < key.Length; j++)
@@ -42,10 +42,17 @@ namespace sifra
                 {
                     if (alphabet[b] == key[j])
                     {
-                        keyArray[j] = b;break;
+                        keyArray[j] = b; break;
                     }
                 }
             }
+            return keyArray;
+        }
+        public string alphabetGen(string key)
+        {
+            string retAlphabet = ""; //spřeházená abededa, která se bude vracet
+            int keyPos = 0;//pozice, odkud se bere charakter klíče
+            int[] keyArray = keyArr(key);
             for (int i = 0; i < alphabet.Length; i++)
             {
                 int index = i + keyArray[keyPos];
@@ -53,13 +60,13 @@ namespace sifra
                 posun://posun řeší, kdyby jedno písmeno bylo v abecedě dvakrát, což by bylo nedešifrovatelné
                 for (int s = 0; s < retAlphabet.Length; s++)
                 {
-                    if (alphabet[(index+posunO) % 36] == retAlphabet[s])
+                    if (alphabet[(index+posunO) % 42] == retAlphabet[s])
                     {
                         posunO++;
                         goto posun;
                     }
                 }
-                retAlphabet += alphabet[(index+posunO)%36].ToString();
+                retAlphabet += alphabet[(index+posunO)%42].ToString();
                 keyPos++;
                 if (keyPos >= key.Length-1)//pokud dojdou charaktery klíče, začíná odznovu
                 {
@@ -68,7 +75,7 @@ namespace sifra
             }
             return retAlphabet;
         }
-        public string switchString(string modifiedAlphabet, string text)
+        public string switchString(string text, string modifiedAlphabet)
         {
             string modifiedText = "";
             for (int i = 0; i < text.Length; i++)
@@ -88,7 +95,7 @@ namespace sifra
             }
             return modifiedText;
         }
-        public string switchStringBack(string modifiedAlphabet, string text)
+        public string switchStringBack(string text, string modifiedAlphabet)
         {
             string modifiedText = "";
             for (int i = 0; i < text.Length; i++)
@@ -111,26 +118,24 @@ namespace sifra
         {
             string textOutput = "";
             int alphabetIndex = 0;
+            int[] keyArray = keyArr(key);
+            int keyPos = 0;
             for(int i = 0; i < text.Length; i++)
             {
-                alphabetIndex++;
-                if (alphabetIndex+3 >= 36)
-                {
-                    alphabetIndex = 0;
-                }
+                alphabetIndex += keyArray[keyPos];
                 switch (text[i])
                 {
                     case ' ':
-                        textOutput += alphabet[alphabetIndex];
+                        textOutput += alphabet[alphabetIndex%42];
                         break;
                     case '.':
-                        textOutput+= alphabet[alphabetIndex+1];
+                        textOutput+= alphabet[(alphabetIndex+1) % 42];
                         break;
                     case '-':
-                        textOutput+= alphabet[alphabetIndex+2];
+                        textOutput+= alphabet[(alphabetIndex+2) % 42];
                         break;
                     case '/':
-                        textOutput += alphabet[alphabetIndex + 3];
+                        textOutput += alphabet[(alphabetIndex + 3) % 42];
                         break;
                     default:
                         textOutput += 'x';
@@ -144,27 +149,33 @@ namespace sifra
         {
             string textOutput = "";
             int alphabetIndex = 0;
+            int[] keyArray = keyArr(key);
+            int keyPos = 0;
             for (int i = 0; i < text.Length; i++)
             {
-                alphabetIndex++;
-                if (alphabetIndex + 3 >= 36)
+                alphabetIndex += keyArray[keyPos];
+                if (alphabetIndex + 3 >= 42)
                 {
-                    alphabetIndex = 0;
+                    alphabetIndex %= 42;
                 }
-                if (text[i] == alphabet[alphabetIndex])
+                if (text[i] == alphabet[alphabetIndex % 42])
                 {
                     textOutput += ' ';
-                }else if (text[i] == alphabet[alphabetIndex+1])
+                }else if (text[i] == alphabet[(alphabetIndex+1)%42])
                 {
                     textOutput += '.';
                 }
-                else if (text[i] == alphabet[alphabetIndex+2])
+                else if (text[i] == alphabet[(alphabetIndex+2) % 42])
                 {
                     textOutput += '-';
                 }
-                else if (text[i] == alphabet[alphabetIndex + 3])
+                else if (text[i] == alphabet[(alphabetIndex+3) % 42])
                 {
                     textOutput += '/';
+                }
+                else
+                {
+                    MessageBox.Show("dik");
                 }
             }
 
