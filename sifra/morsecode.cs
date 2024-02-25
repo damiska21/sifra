@@ -59,7 +59,7 @@ namespace sifra
         }
         public string EncodeToMorseCode(string text)
         {
-            text = text.ToUpper();
+            text = text.ToUpper();//celý text je převeden do velkých písmenek pro konzistenci
             string encodedText = "";
 
             foreach (char c in text)
