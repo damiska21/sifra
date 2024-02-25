@@ -23,11 +23,31 @@ namespace sifra
             richTextBox1.Text = morseCharsToText(richTextBox1.Text, textBox1.Text);
             richTextBox1.Text = switchString(richTextBox1.Text, alphabetGen(textBox1.Text));
         }
+        //dešifrovat
         private void button2_Click(object sender, EventArgs e)
         {
             richTextBox2.Text = switchStringBack(richTextBox2.Text, alphabetGen(textBox2.Text));
             richTextBox2.Text = morseCharsToTextBack(richTextBox2.Text, textBox2.Text);
             richTextBox2.Text = morse.DecodeFromMorseCode(richTextBox2.Text);
+        }
+        private void cypher1step(object sender, EventArgs e)
+        {
+            richTextBox1.Text = morse.EncodeToMorseCode(richTextBox1.Text);
+        }
+
+        private void cypher2step(object sender, EventArgs e)
+        {
+            richTextBox1.Text = morseCharsToText(richTextBox1.Text, textBox1.Text);
+        }
+
+        private void decypher1step(object sender, EventArgs e)
+        {
+            richTextBox2.Text = morse.DecodeFromMorseCode(richTextBox2.Text);
+        }
+
+        private void decypher2step(object sender, EventArgs e)
+        {
+            richTextBox2.Text = morseCharsToTextBack(richTextBox2.Text, textBox2.Text);
         }
         public MorseCodeConverter morse = new MorseCodeConverter();
         

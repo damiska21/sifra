@@ -5,11 +5,12 @@ namespace sifra
 {
     public class MorseCodeConverter
     {
-        private Dictionary<char, string> morseCodeDictionary;
+        //dictionary na písmenka a jejich morse code verze
+        private Dictionary<char, string> morseovka;
 
         public MorseCodeConverter()
         {
-            morseCodeDictionary = new Dictionary<char, string>()
+            morseovka = new Dictionary<char, string>()
             {
                 {'A', ".-"},
                 {'B', "-..."},
@@ -63,9 +64,9 @@ namespace sifra
 
             foreach (char c in text)
             {
-                if (morseCodeDictionary.ContainsKey(c))
+                if (morseovka.ContainsKey(c))
                 {
-                    encodedText += morseCodeDictionary[c] + " ";
+                    encodedText += morseovka[c] + " ";
                 }
                 else
                 {
@@ -78,7 +79,7 @@ namespace sifra
         public string DecodeFromMorseCode(string morseCode)
         {
             string[] morseCodeWords = morseCode.Split(new[] { " / " }, StringSplitOptions.None);
-            string decodedText = "";
+            string text = "";
 
             foreach (string word in morseCodeWords)
             {
@@ -86,20 +87,20 @@ namespace sifra
 
                 foreach (string letter in morseCodeLetters)
                 {
-                    foreach (KeyValuePair<char, string> pair in morseCodeDictionary)
+                    foreach (KeyValuePair<char, string> pair in morseovka)
                     {
                         if (pair.Value == letter)
                         {
-                            decodedText += pair.Key;
+                            text += pair.Key;
                             break;
                         }
                     }
                 }
 
-                decodedText += " ";
+                text += " ";
             }
 
-            return decodedText.Trim().ToLower();
+            return text.Trim().ToLower();
         }
     }
 }

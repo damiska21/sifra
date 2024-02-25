@@ -20,3 +20,13 @@ C:\Users\rohacekd\Desktop\sifra\sifra\obj\Debug\sifra.csproj.GenerateResource.ca
 C:\Users\rohacekd\Desktop\sifra\sifra\obj\Debug\sifra.csproj.CoreCompileInputs.cache
 C:\Users\rohacekd\Desktop\sifra\sifra\obj\Debug\sifra.exe
 C:\Users\rohacekd\Desktop\sifra\sifra\obj\Debug\sifra.pdb
+D:\programko\h\sifra\sifra\bin\Debug\sifra.exe.config
+D:\programko\h\sifra\sifra\bin\Debug\sifra.exe
+D:\programko\h\sifra\sifra\bin\Debug\sifra.pdb
+D:\programko\h\sifra\sifra\obj\Debug\sifra.csproj.AssemblyReference.cache
+D:\programko\h\sifra\sifra\obj\Debug\sifra.Form1.resources
+D:\programko\h\sifra\sifra\obj\Debug\sifra.Properties.Resources.resources
+D:\programko\h\sifra\sifra\obj\Debug\sifra.csproj.GenerateResource.cache
+D:\programko\h\sifra\sifra\obj\Debug\sifra.csproj.CoreCompileInputs.cache
+D:\programko\h\sifra\sifra\obj\Debug\sifra.exe
+D:\programko\h\sifra\sifra\obj\Debug\sifra.pdb
