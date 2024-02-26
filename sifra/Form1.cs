@@ -20,40 +20,40 @@ namespace sifra
         private void button1_Click(object sender, EventArgs e)
         {
             richTextBox1.Text = morse.EncodeToMorseCode(richTextBox1.Text);
-            richTextBox1.Text = morseCharsToText(richTextBox1.Text, textBox1.Text);
-            richTextBox1.Text = switchString(richTextBox1.Text, alphabetGen(textBox1.Text));
-            System.Windows.Forms.Clipboard.SetText(richTextBox1.Text); //nastavení schránky
+            richTextBox1.Text = morseCharsToText(richTextBox1.Text, textBox1.Text.ToLower());
+            richTextBox1.Text = switchString(richTextBox1.Text, alphabetGen(textBox1.Text.ToLower()));
+            Clipboard.SetText(richTextBox1.Text); //nastavení schránky
         }
         //dešifrovat
         private void button2_Click(object sender, EventArgs e)
         {
-            richTextBox2.Text = switchStringBack(richTextBox2.Text, alphabetGen(textBox2.Text));
-            richTextBox2.Text = morseCharsToTextBack(richTextBox2.Text, textBox2.Text);
+            richTextBox2.Text = switchStringBack(richTextBox2.Text, alphabetGen(textBox2.Text.ToLower()));
+            richTextBox2.Text = morseCharsToTextBack(richTextBox2.Text, textBox2.Text.ToLower());
             richTextBox2.Text = morse.DecodeFromMorseCode(richTextBox2.Text);
-            System.Windows.Forms.Clipboard.SetText(richTextBox2.Text);//nastavení schránky
+            Clipboard.SetText(richTextBox2.Text);//nastavení schránky
         }
         //tlačítka na zašifrování jednotlivých kroků
         private void cypher1step(object sender, EventArgs e)
         {
             richTextBox1.Text = morse.EncodeToMorseCode(richTextBox1.Text);
-            System.Windows.Forms.Clipboard.SetText(richTextBox1.Text);
+            Clipboard.SetText(richTextBox1.Text);
         }
 
         private void cypher2step(object sender, EventArgs e)
         {
             richTextBox1.Text = morseCharsToText(richTextBox1.Text, textBox1.Text);
-            System.Windows.Forms.Clipboard.SetText(richTextBox1.Text);
+            Clipboard.SetText(richTextBox1.Text);
         }
 
         private void decypher1step(object sender, EventArgs e)
         {
             richTextBox2.Text = morse.DecodeFromMorseCode(richTextBox2.Text);
-            System.Windows.Forms.Clipboard.SetText(richTextBox2.Text);
+            Clipboard.SetText(richTextBox2.Text);
         }
 
         private void decypher2step(object sender, EventArgs e)
         {
-            System.Windows.Forms.Clipboard.SetText(richTextBox2.Text);
+            Clipboard.SetText(richTextBox2.Text);
             richTextBox2.Text = morseCharsToTextBack(richTextBox2.Text, textBox2.Text);
         }
         public MorseCodeConverter morse = new MorseCodeConverter();
