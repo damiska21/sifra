@@ -15,6 +15,7 @@ namespace sifra
             richTextBox1.Text = morse.EncodeToMorseCode(richTextBox1.Text);
             richTextBox1.Text = morseCharsToText(richTextBox1.Text, textBox1.Text.ToLower());
             richTextBox1.Text = switchString(richTextBox1.Text, alphabetGen(textBox1.Text.ToLower()));
+            richTextBox1.Text = alphabetGen(textBox1.Text);
             Clipboard.SetText(richTextBox1.Text); //nastavení schránky
         }
         //dešifrovat
