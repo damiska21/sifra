@@ -18,7 +18,8 @@ První funkce, nazvaná EncodeToMorseCode,  vrací text přepsaný do Morseovy a
 Druhá funkce, DecodeFromMorseCode, dělá přesný opak. 
 Tato část šifrování je jediná, která nevyužívá klíče. 
 
-1. Krok – Ukázka funkce 
+Ukázka funkce 
+
 Vstupní text 
 text na zasifrovani 
 Výstupní text 
@@ -45,7 +46,7 @@ Z místa alphabetIndex se do výstupu připíše současné písmenko, pokud je 
 AlphabetIndex se v prvním opakování posune o jedno místo a bude na 1, a pokud bude v textu -, vepíše se do výsledku d, protože pomlčka je posun o dvě v abecedě. 
 
 
-2. Krok – Ukázka funkce 
+Ukázka funkce 
 Vstupní text, klíč: klic 
 - . -..- - / -. .- / --.. .- ... .. ..-. .-. --- ...- .- -. .. 
 Výstupní text 
@@ -62,6 +63,7 @@ Způsob prohazování písmen:
 Funkce switchString bere jako argumenty text na zpřeházení a zpřeházenou abecedu z alphabetGen.
 
 Funkce AlphabetGen 
+
 Vstupní klíč:  
 pampeliska 
 Vygenerovaná abeceda: 
@@ -71,7 +73,8 @@ abcdefghijklmnopqrstuvwxyz1234567890.,:-?@
 Poté projede celým textem a prohazuje písmena z originální abecedy za jejich ekvivalenty v zpřeházené abecedě. 
  
 
-3. Krok – Ukázka funkce 
+Ukázka funkce 
+
 Vstupní text, klíč: klic 
 mv56bltw5bhmt7-?jv27-kst4-gjr4,-gs12:hqr1:fgp3.:eqy1,enqy,cdoz7 
 Výstupní text
