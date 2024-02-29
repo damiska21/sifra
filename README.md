@@ -9,7 +9,9 @@ Jakékoli šifrování i odšifrování automaticky ukládá výsledný text do 
 Pro extra zabezpečení lze zašifrovat již zašifrovaný text. Výsledný text bude delší a bezpečnější, hlavně když při druhém kroku použijete jiný klíč. 
 
 
-1. Krok – Morseova abeceda 
+
+První Krok – Morseova abeceda 
+
 Písmena jsou oddělena mezerou, slova jsou oddělena lomítkem. Tečky, čárky a ostatní speciální znaky mají své vlastní znaky. 
 V prvním kroku se celý text převede do Morseovy abecedy přes třídu MorseCodeConverter. 
 Tato třída obsahuje 2 metody a jeden slovník. 
@@ -26,12 +28,15 @@ Výstupní text
 - . -..- - / -. .- / --.. .- ... .. ..-. .-. --- ...- .- -. .. 
  
 
-2. Krok – Morseova abeceda do písmen 
+
+Druhý Krok – Morseova abeceda do písmen 
+
 Tuto část šifrování řeší funkce morseCharsToText, pro dešifraci slouží morseCharsToTextBack. 
 Obě funkce vyžadují vstupní text a klíč. 
 Nejdříve se přes funkci keyArr() vygenerují čísla odpovídající pořadí v abecedě.
 
 Funkce keyArr() 
+
 Navrací pole čísel. 
 Tyto čísla jsou ekvivalentní pozici v abecedě, a začíná na 0 
 Ukázka: 
@@ -53,7 +58,9 @@ Výstupní text
 mv56bltw5bhmt7-?jv27-kst4-gjr4,-gs12:hqr1:fgp3.:eqy1,enqy,cdoz7 
 
 
-3. Krok – Prohození písmen 
+
+Třetí Krok – Prohození písmen 
+
 Funkce alphabetGen vygeneruje spřeházenou abecedu podle klíče. 
 Tato abeceda má každý charakter originální, bez toho by byl text nedešifrovatelný. 
 Způsob generace abecedy: 
